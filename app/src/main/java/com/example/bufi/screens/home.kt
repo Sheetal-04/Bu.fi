@@ -118,7 +118,9 @@ fun Homepage ( navController: NavController){
                 }
 
             }
-            ListCarousel(bgcolor = Color.Transparent , navController)
+            Box(modifier = Modifier.height(200.dp)){
+                ListCarousel(bgcolor = Color.Transparent , navController)
+            }
             Row(
                 modifier = Modifier.padding(top = 32.dp, bottom = 10.dp)
             ) {
@@ -133,7 +135,10 @@ fun Homepage ( navController: NavController){
                 }
 
             }
-            ListCarousel(bgcolor = YelloPri , navController )
+            Box(modifier = Modifier.height(200.dp)){
+                ListCarousel(bgcolor = YelloPri , navController )
+            }
+
 
 
         }
@@ -177,25 +182,25 @@ fun ListCarousel( bgcolor :Color , navController: NavController) {
     )
     val pageState = rememberPagerState()
     Row {
-        Card(
-            elevation = 8.dp,
-            shape = RoundedCornerShape(18.dp),
-            backgroundColor = bgcolor,
+        HorizontalPager(
+            state = pageState,
+            count = carouselText.size
+        ){
+                page ->Card(
+                elevation = 8.dp,
+                shape = RoundedCornerShape(18.dp),
+                backgroundColor = bgcolor,
 
-            modifier = Modifier
-                .size(width = 390.dp, height = 160.dp)
-                .padding(start = 30.dp, end = 30.dp, top = 16.dp)
-                .border(width = 1.dp, color = Color.White, shape = RoundedCornerShape(24.dp))
-        ) {
-            HorizontalPager(
-                state = pageState,
-                count = carouselText.size
-            ) { page ->
+                modifier = Modifier
+                    .size(width = 390.dp, height = 160.dp)
+                    .padding(start = 30.dp, end = 30.dp, top = 16.dp)
+                    .border(width = 1.dp, color = Color.White, shape = RoundedCornerShape(24.dp)).clickable { var onClick = {
+                        navController.navigate("detailpage")
+                    } }
+            ){
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(all = 20.dp).clickable { var onClick = {
-                        navController.navigate("detailpage")
-                    } },
+                    modifier = Modifier.padding(all = 20.dp),
                 ) {
                     Text(modifier = Modifier.fillMaxWidth(),
                         color = Color.White,

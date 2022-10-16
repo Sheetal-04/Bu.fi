@@ -64,9 +64,7 @@ fun DetailPage(navController: NavController){
                         modifier = Modifier.padding(all = 30.dp)
                     ) {
                         Button(onClick = {
-                                         navController.navigate("home"){
-                                             popUpTo("detailpage")
-                                         }
+                                         navController.popBackStack()
                         }
                             , modifier = Modifier.size(height = 60.dp, width = 60.dp),
                             shape = RoundedCornerShape(15),
